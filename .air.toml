@@ -1,0 +1,29 @@
+root = "."
+tmp_dir = "/usr/src/app/tmp"
+
+[build]
+  cmd = "templ generate && go build -o ./tmp/main ."
+  bin = "./tmp/main"
+  full_bin = "dlv exec --listen=:40000 --headless=true --api-version=2 --continue --accept-multiclient ./tmp/main"
+  include_ext = ["go", "tpl", "tmpl", "templ", "html", "js", "css"]
+  exclude_dir = ["assets", "tmp", "vendor", "frontend/node_modules"]
+  include_dir = []
+  exclude_file = ["**/*_templ.go"]
+  exclude_regex = [".*_templ.go"]
+  poll_interval = 0
+  log = "air_errors.log"
+  delay = 10
+  stop_on_error = true
+  give_up_on_error = true
+
+[log]
+  time = false
+
+[color]
+  main = "magenta"
+  watcher = "cyan"
+  build = "yellow"
+  runner = "green"
+
+[misc]
+  clean_on_exit = true
